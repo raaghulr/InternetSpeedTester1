@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,6 +31,8 @@ import com.google.android.gms.ads.MobileAds;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
+import android.os.Handler;
+import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity
 
                 // hide element by class name
                 wv.loadUrl("javascript:(function() { " +
-                        "document.getElementsByClassName('logo-container')[0].style.visibility='hidden' ; })()");
+                        "document.getElementsByClassName('logo-container')[0].style.visibility='hidden'     ; })()");
 
                 wv.loadUrl("javascript:(function() { " +
                         "document.getElementsByClassName('test-on-ookla')[0].style.display='none'; })()");
@@ -162,13 +165,13 @@ public class MainActivity extends AppCompatActivity
         final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage("Are you sure want to exit the application?");
         builder.setCancelable(true);
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Stay On App!", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
             }
         });
-        builder.setPositiveButton("Close!", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("CLOSE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 finish();
@@ -179,6 +182,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void takeScreenshot() {
+
         Date now = new Date();
         String mPath;
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
@@ -235,7 +239,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -260,17 +264,28 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        if (id == R.id.nav_screenshot) {
+            //Intent fp=new Intent(getApplicationContext(),MainActivity.class);
+           // startActivity(fp);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 100ms
+                    takeScreenshot();
+                }
+            }, 200);
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+            Intent i=new Intent(android.content.Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject test");
+            i.putExtra(android.content.Intent.EXTRA_TEXT, "Hey check out this app, Now you can test your Internet Speed within 15 Seconds with this innovative app at:\n\nhttps://play.google.com/store/apps/details?id=com.raaghulr.rr.internetspeedtester");
+            startActivity(Intent.createChooser(i,"Share via"));
+
+        } else if (id == R.id.nav_rateus) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.raaghulr.rr.internetspeedtester")));
 
         }
 

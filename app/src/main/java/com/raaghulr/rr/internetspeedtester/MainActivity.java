@@ -7,17 +7,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -48,8 +47,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Screen Shot of Speed Test Taken!!! ", Snackbar.LENGTH_LONG)
-                  //      .setAction("Action", null).show();
+
                 takeScreenshot();
             }
         });
@@ -58,8 +56,7 @@ public class MainActivity extends AppCompatActivity
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Refreshing the Page!!!Please Wait!! ", Snackbar.LENGTH_LONG)
-                //        .setAction("Action", null).show();
+
                 MainActivity.this.wv.loadUrl("https://www.fast.com");
                 wv.getSettings().setJavaScriptEnabled(true);
             }
@@ -94,13 +91,7 @@ public class MainActivity extends AppCompatActivity
         wv.loadUrl("https://www.fast.com");
         wv.getSettings().setJavaScriptEnabled(true);
 
-       /* MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
-        mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
-                .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
-                .build();
-        mAdView.loadAd(adRequest); */
+
 
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-9940055534807736~8154470200");
         mAdView = (AdView) findViewById(R.id.adView);
@@ -196,15 +187,7 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-   /* @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }*/
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

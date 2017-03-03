@@ -61,7 +61,7 @@
         android:layout_marginBottom="70dp"
         android:layout_marginLeft="175dp"
         app:elevation="24dp"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
 
 </android.support.design.widget.CoordinatorLayout>

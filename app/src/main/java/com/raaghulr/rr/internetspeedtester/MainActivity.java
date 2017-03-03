@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private WebView wv;
     String mPath;
-    private AdView mAdView;
+    private AdView mAdView,mAdView1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,12 +91,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPageFinished(WebView view, String url)
             {
-                // hide element by class name
-                wv.loadUrl("javascript:(function() { " +
-                        "document.getElementsByClassName('logo-container')[0].style.display='none'; })()");
+               /*
 
                 wv.loadUrl("javascript:(function() { " +
-                        "document.getElementsByClassName('footer-container')[0].style.display='none'; })()");
+                        "document.getElementsByClassName('footer-container')[0].style.display='none'; })()"); */
+
+                // hide element by class name
+                wv.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('logo-container')[0].style.visibility='hidden' ; })()");
 
                 wv.loadUrl("javascript:(function() { " +
                         "document.getElementsByClassName('test-on-ookla')[0].style.display='none'; })()");
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity
 
                 wv.loadUrl("javascript:document.getElementById('speed-value').style.setProperty(\"color\", \"blue\");");
                 wv.loadUrl("javascript:document.getElementById('speed-units').style.setProperty(\"color\", \"red\");");
+                wv.loadUrl("javascript:document.getElementById('speed-controls-container centered').setAttribute(\"align\", \"center\");");
             }
             //
 
@@ -125,6 +128,9 @@ public class MainActivity extends AppCompatActivity
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        mAdView1 = (AdView) findViewById(R.id.adView1);
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        mAdView1.loadAd(adRequest);
 
     }
 

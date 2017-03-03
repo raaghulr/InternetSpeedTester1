@@ -3,6 +3,7 @@ package com.raaghulr.rr.internetspeedtester;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -33,6 +34,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
 import android.os.Handler;
+import android.widget.TextView;
+
 import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity
@@ -41,12 +44,13 @@ public class MainActivity extends AppCompatActivity
     String mPath;
     FloatingActionButton fab2;
     private AdView mAdView,mAdView1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
 
 

@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/titlepurpledark</item>
         <item name="colorPrimaryDark">@color/titlepurplelight</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:typeface">serif</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">

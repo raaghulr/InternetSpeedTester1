@@ -3,7 +3,6 @@ package com.raaghulr.rr.internetspeedtester;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,8 +33,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
 import android.os.Handler;
-import android.widget.TextView;
-
 import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity
@@ -44,13 +41,12 @@ public class MainActivity extends AppCompatActivity
     String mPath;
     FloatingActionButton fab2;
     private AdView mAdView,mAdView1;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
 
@@ -74,7 +70,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +105,6 @@ public class MainActivity extends AppCompatActivity
             public void onPageFinished(WebView view, String url)
             {
                /*
-
                 wv.loadUrl("javascript:(function() { " +
                         "document.getElementsByClassName('footer-container')[0].style.display='none'; })()"); */
 
@@ -284,7 +279,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_screenshot) {
             //Intent fp=new Intent(getApplicationContext(),MainActivity.class);
-           // startActivity(fp);
+            // startActivity(fp);
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override

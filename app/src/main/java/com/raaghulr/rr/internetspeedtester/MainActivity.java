@@ -204,14 +204,14 @@ public class MainActivity extends AppCompatActivity
         try {
 
             File folder = new File(Environment.getExternalStorageDirectory() +
-                    File.separator + "SpeedTest");
+                    File.separator + "Internet Speed Tester");
             boolean success = true;
             if (!folder.exists()) {
                 success = folder.mkdirs();
             }
             if (success) {
                 // Do something on success
-                mPath = Environment.getExternalStorageDirectory().toString() + "/SpeedTest/" + now + ".jpg";
+                mPath = Environment.getExternalStorageDirectory().toString() + "/Internet Speed Tester/" + now + ".jpg";
             } else {
                 // Do something else on failure
                 mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";

@@ -14,9 +14,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         wv = (WebView) findViewById(R.id.webview);
+        wv.getSettings().setJavaScriptEnabled(true);
         wv.setWebViewClient(new WebViewClient(){
 
             //
@@ -84,12 +88,36 @@ public class MainActivity extends AppCompatActivity
                 loadError();
             }
 
+            @Override
+            public void onPageFinished(WebView view, String url)
+            {
+                // hide element by class name
+                wv.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('logo-container')[0].style.display='none'; })()");
+
+                wv.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('footer-container')[0].style.display='none'; })()");
+
+                wv.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('test-on-ookla')[0].style.display='none'; })()");
+
+                // hide element by id
+                wv.loadUrl("javascript:(function() { " +
+                        "document.getElementById('your_id').style.display='none';})()");
+
+                wv.loadUrl("javascript:document.getElementById('speed-value').style.setProperty(\"color\", \"blue\");");
+                wv.loadUrl("javascript:document.getElementById('speed-units').style.setProperty(\"color\", \"red\");");
+            }
             //
 
 
         });
+        wv.loadUrl("javascript:alert(functionThatReturnsSomething)");
         wv.loadUrl("https://www.fast.com");
-        wv.getSettings().setJavaScriptEnabled(true);
+
+
+
+
 
 
 
@@ -98,6 +126,15 @@ public class MainActivity extends AppCompatActivity
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+    }
+
+    final class wv extends WebChromeClient {
+        @Override
+        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+            Log.d("LogTag", message);
+            result.confirm();
+            return true;
+        }
     }
 
     private void loadError() {

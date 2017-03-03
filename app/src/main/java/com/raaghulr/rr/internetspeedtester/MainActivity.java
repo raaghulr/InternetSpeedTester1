@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private WebView wv;
     String mPath;
+    FloatingActionButton fab2;
     private AdView mAdView,mAdView1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,14 @@ public class MainActivity extends AppCompatActivity
 
                 MainActivity.this.wv.loadUrl("https://www.fast.com");
                 wv.getSettings().setJavaScriptEnabled(true);
+            }
+        });
+
+         fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
             }
         });
 
@@ -147,6 +157,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void loadError() {
+        CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) fab2.getLayoutParams();
+        p.setAnchorId(View.NO_ID);
+        fab2.setLayoutParams(p);
+        fab2.setVisibility(View.VISIBLE);
         String html = "<html><body><table width=\"100%\" height=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">"
                 + "<tr>"
                 + "<td><div align=\"center\"><font color=\"red\" size=\"20pt\">Your device don't have active internet connection</font></div></td>"
